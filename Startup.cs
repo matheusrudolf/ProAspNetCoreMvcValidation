@@ -27,6 +27,9 @@ namespace ProAspNetCoreMvcValidation
             }
 
             app.UseStaticFiles();
+            app.UseStatusCodePages();
+            app.UseStaticFiles();
+            app.UseMvcWithDefaultRoute();
 
             app.UseMvc(rotas =>
             {
