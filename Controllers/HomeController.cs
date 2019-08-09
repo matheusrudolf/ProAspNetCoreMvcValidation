@@ -39,5 +39,24 @@ namespace ProAspNetCoreMvcValidation.Controllers
             }
 
         }
+
+        [HttpGet]
+        public IActionResult Compra()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Compra(Compra compra)
+        { 
+            if (ModelState.IsValid)
+            {
+                return View("CompraConfirmado", compra);
+            }
+            else
+            {
+                return View(compra);
+            }
+        }
     }
 }
