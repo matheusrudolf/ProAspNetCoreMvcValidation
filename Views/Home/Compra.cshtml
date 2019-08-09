@@ -48,5 +48,9 @@
         <div><span asp-validation-for="Quantidade" class="text-danger"></span></div>
         <input asp-for="Mensagem" type="text" class="form-control" />
     </div>
+    <div class="custom-control custom-radio">
+        <input type="radio" asp-for="TermosEntrega" id="customRadio2" value="false" class="custom-control-input">
+        <label class="custom-control-label" for="customRadio2">Não</label>
+    </div>
     <button type="submit" class="btn btn-primary">Registrar Contato</button>
 </form>

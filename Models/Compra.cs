@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProAspNetCoreMvcValidation.Util.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -21,5 +22,7 @@ namespace ProAspNetCoreMvcValidation.Models
         public int Quantidade { get; set; }
         [StringLength(10)]
         public string Mensagem { get; set; }
+        [MarcarComoTrue(ErrorMessage = "Você deve marcar como true")]
+        public bool TermosEntrega { get; set; }
     }
 }
