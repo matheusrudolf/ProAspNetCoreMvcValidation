@@ -18,6 +18,19 @@ namespace ProAspNetCoreMvcValidation.Controllers
         [HttpPost]
         public ViewResult Agenda(Compromisso compromisso)
         {
+
+            if (ModelState.GetValidationState("Data") == ModelValidationState.Valid && DateTime.Now > compromisso.Data)
+            {
+                ModelState.AddModelError(nameof(compromisso.Data),
+                "Informe uma data futura");
+            }
+
+            if (!compromisso.AceitaTermos)
+            {
+                ModelState.AddModelError(nameof(compromisso.AceitaTermos),
+                "Você deve aceitar os termos");
+            }
+
             if (ModelState.GetValidationState(nameof(Compromisso.Data))
                 == ModelValidationState.Valid
                 && ModelState.GetValidationState(nameof(Compromisso.NomeCliente))
@@ -29,10 +42,22 @@ namespace ProAspNetCoreMvcValidation.Controllers
                 "Alice não pode ser agendada na segunda-feira");
             }
 
+            if (string.IsNullOrEmpty(compromisso.NomeCliente))
+            {
+                ModelState.AddModelError(nameof(compromisso.NomeCliente),
+                "Informe seu nome");
+            }
+
             if (ModelState.IsValid)
             {
                 return View("Completo", compromisso);
             }
+
+            if (ModelState.IsValid)
+            {
+                return View("Completo", compromisso);
+            }
+
             else
             {
                 return View();

@@ -13,6 +13,8 @@
 <div class="bg-primary panel-body"><h2 class="text-center text-white display-4">Agendamento</h2></div>
 <form class="panel-body" asp-action="Agenda" method="post">
 
+    <div asp-validation-summary="All" class="text-danger"></div>
+
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <hr />
     <div asp-validation-summary="All" class="text-danger"></div>
@@ -38,7 +40,5 @@
     <section class="row justify-content-center mb-5">
         <button type="submit" class="btn btn-primary">Agendar</button>
     </section>
-
-    <div asp-validation-summary="All" class="text-danger"></div>
 
 </form>
