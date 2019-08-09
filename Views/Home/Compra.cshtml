@@ -1,4 +1,4 @@
-﻿@model Compra
+﻿@model ProAspNetCoreMvcValidation.Models.Compra
 @{ Layout = "_Layout"; }
 
 @section scripts {
@@ -47,6 +47,11 @@
         <label asp-for="Mensagem">Mensagem:</label>
         <div><span asp-validation-for="Quantidade" class="text-danger"></span></div>
         <input asp-for="Mensagem" type="text" class="form-control" />
+    </div>
+    <label>Aceita os termos de entraga?</label>
+    <div class="custom-control custom-radio">
+        <input type="radio" asp-for="TermosEntrega" id="customRadio1" value="true" class="custom-control-input">
+        <label class="custom-control-label" for="customRadio1">Sim</label>
     </div>
     <div class="custom-control custom-radio">
         <input type="radio" asp-for="TermosEntrega" id="customRadio2" value="false" class="custom-control-input">

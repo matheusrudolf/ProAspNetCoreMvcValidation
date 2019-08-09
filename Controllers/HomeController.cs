@@ -26,10 +26,10 @@ namespace ProAspNetCoreMvcValidation.Controllers
             }
 
             if (!compromisso.AceitaTermos)
-            {
-                ModelState.AddModelError(nameof(compromisso.AceitaTermos),
-                "Você deve aceitar os termos");
-            }
+{
+    ModelState.AddModelError(nameof(compromisso.AceitaTermos),
+    "Você deve aceitar os termos");
+}
 
             if (ModelState.GetValidationState(nameof(Compromisso.Data))
                 == ModelValidationState.Valid
@@ -73,7 +73,7 @@ namespace ProAspNetCoreMvcValidation.Controllers
 
         [HttpPost]
         public IActionResult Compra(Compra compra)
-        { 
+        {
             if (ModelState.IsValid)
             {
                 return View("CompraConfirmado", compra);
