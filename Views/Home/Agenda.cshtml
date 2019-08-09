@@ -1,6 +1,15 @@
 ﻿@model ProAspNetCoreMvcValidation.Models.Compromisso
 @{ Layout = "_Layout"; }
 
+@section scripts {
+   <script src="~/jquery/jquery.min.js"></script>
+   <script type="text/javascript">
+       $(document).ready(function () {
+           $("input.input-validation-error").addClass("is-invalid")
+       });
+   </script>
+}
+
 <div class="bg-primary panel-body"><h2 class="text-center text-white display-4">Agendamento</h2></div>
 <form class="panel-body" asp-action="Agenda" method="post">
 
