@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using ProAspNetCoreMvcValidation.Models;
 using System;
 using System.Collections.Generic;
@@ -17,10 +18,15 @@ namespace ProAspNetCoreMvcValidation.Controllers
         [HttpPost]
         public ViewResult Agenda(Compromisso compromisso)
         {
-            if (string.IsNullOrEmpty(compromisso.NomeCliente))
+            if (ModelState.GetValidationState(nameof(Compromisso.Data))
+                == ModelValidationState.Valid
+                && ModelState.GetValidationState(nameof(Compromisso.NomeCliente))
+                == ModelValidationState.Valid
+                && compromisso.NomeCliente.Equals("Alice", StringComparison.OrdinalIgnoreCase)
+                && compromisso.Data.DayOfWeek == DayOfWeek.Monday)
             {
-                ModelState.AddModelError(nameof(compromisso.NomeCliente),
-                    "Informe seu nome");
+                ModelState.AddModelError("",
+                "Alice não pode ser agendada na segunda-feira");
             }
 
             if (ModelState.IsValid)
@@ -32,19 +38,6 @@ namespace ProAspNetCoreMvcValidation.Controllers
                 return View();
             }
 
-            if (ModelState.GetValidationState("Data") == Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Valid && DateTime.Now > compromisso.Data)
-            {
-                ModelState.AddModelError(nameof(compromisso.Data),
-                "Informe uma data futura");
-            }
-
-            if (!compromisso.AceitaTermos)
-            {
-                ModelState.AddModelError(nameof(compromisso.AceitaTermos),
-                "Você deve aceitar os termos");
-            }
-
-            return View("Completo", compromisso);
         }
     }
 }
